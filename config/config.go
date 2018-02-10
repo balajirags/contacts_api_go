@@ -1,6 +1,8 @@
 package config
 
-import "github.com/spf13/viper"
+import (
+	"github.com/spf13/viper"
+)
 
 type Config struct {
 	logLevel string
@@ -8,6 +10,7 @@ type Config struct {
 }
 
 var appConfig *Config
+
 
 func Load() {
 	viper.SetDefault("APP_PORT", "3000")
@@ -23,6 +26,7 @@ func Load() {
 		logLevel: getString("LOG_LEVEL"),
 		port:     getIntOrPanic("APP_PORT"),
 	}
+
 }
 
 func GetAppConfig() *Config {
@@ -36,3 +40,7 @@ func GetAppPort() int {
 func GetLogLevel() string {
 	return appConfig.logLevel
 }
+
+
+
+

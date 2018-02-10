@@ -8,5 +8,7 @@ import (
 func InitRouter() *mux.Router {
 	router := mux.NewRouter()
 	router.HandleFunc("/ping", handler.PingHandler).Methods("GET")
+	router.HandleFunc("/contact", handler.CreateContact).Methods("POST")
+	router.HandleFunc("/contact/{id}", handler.GetContact).Methods("GET")
 	return router
 }
