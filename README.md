@@ -19,7 +19,7 @@ export PATH
 ```
 
 ### Setup
-#### copy application.yml.sample to application.yml and update the config
+copy application.yml.sample to application.yml and update the config
 ```shell
 go run main.go
 ```
