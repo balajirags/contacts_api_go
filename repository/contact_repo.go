@@ -17,6 +17,7 @@ type contactRepository struct {
 }
 
 const createContacts = "insert into contacts(first_name, last_name, email, address, phone_number) values ($1,$2,$3,$4,$5)"
+const GetContacts = "select * from contacts where id = $1"
 
 func (self contactRepository) Create(contact models.Contact) error {
 	tx := self.Db.MustBegin()
@@ -29,7 +30,12 @@ func (self contactRepository) Create(contact models.Contact) error {
 }
 
 func (self contactRepository) Get(id int64) (*models.Contact, error) {
-	return nil, nil
+	contact := &models.Contact{}
+	err := self.Db.Get(contact, GetContacts, id)
+	if err != nil {
+		logger.Log.Errorf("Error retrieving contacts for id - %d. Error is %s ", id, err.Error())
+	}
+	return contact, err
 }
 
 func NewContactRepo() ContactRepository {

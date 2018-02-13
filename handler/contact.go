@@ -23,13 +23,14 @@ func CreateContact(w http.ResponseWriter, r *http.Request) {
 func GetContact(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	logger.Log.Info("Called Get contact endpoint", params["id"])
-	strconv.ParseInt(params["id"], 10, 64)
-	/*contact, e := appcontext.GetContactRepo().Get(i)
+	id, _ := strconv.ParseInt(params["id"], 10, 64)
+	contactRepository := repository.NewContactRepo()
+	contact, e := contactRepository.Get(id)
 	if e!=nil{
 		logger.Log.Info("error", e)
 		w.WriteHeader(http.StatusInternalServerError)
 	}else{
 		w.WriteHeader(http.StatusOK)
 		json.NewEncoder(w).Encode(contact)
-	}*/
+	}
 }
