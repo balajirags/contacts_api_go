@@ -6,3 +6,5 @@ import:
   version: v1.0.4
 - package: github.com/spf13/viper.git
   version: v1.0.0
+- package: github.com/jmoiron/sqlx
+- package: github.com/lib/pq

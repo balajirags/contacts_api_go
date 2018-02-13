@@ -10,7 +10,7 @@ import (
 func main() {
 	config.Load()
 	logger.InitLogger(config.GetLogLevel())
-	appcontext.InitializeDB()
+	appcontext.Initialize()
 	server.StartServer()
 }
 

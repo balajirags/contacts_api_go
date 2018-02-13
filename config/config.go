@@ -7,6 +7,7 @@ import (
 type Config struct {
 	logLevel string
 	port     int
+	databaseConfig *databaseConfig
 }
 
 var appConfig *Config
@@ -25,6 +26,7 @@ func Load() {
 	appConfig = &Config{
 		logLevel: getString("LOG_LEVEL"),
 		port:     getIntOrPanic("APP_PORT"),
+		databaseConfig: newDatabaseConfig(),
 	}
 
 }
@@ -39,6 +41,10 @@ func GetAppPort() int {
 
 func GetLogLevel() string {
 	return appConfig.logLevel
+}
+
+func GetDBConfig() *databaseConfig {
+	return appConfig.databaseConfig
 }
 
 
