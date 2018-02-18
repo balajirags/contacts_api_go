@@ -22,4 +22,8 @@ export PATH
 copy application.yml.sample to application.yml and update the config
 ```shell
 go run main.go
+
 ```
+
+###Vegata
+vegeta attack -targets=./target.txt -body=./contacts_request.json -rate=100 -duration=120s | vegeta report -reporter=plot -output=report.html
