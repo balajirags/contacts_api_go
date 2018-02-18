@@ -6,3 +6,8 @@ DB_NAME: "contacts_db"
 DB_USER: "postgres"
 DB_PASSWORD: ""
 DB_POOL: 5
+STATSD_APP_NAME: "contacts_api"
+STATSD_PORT: "8125"
+STATSD_ENABLED: "true"
+STATSD_HOST: "192.168.99.100"
+

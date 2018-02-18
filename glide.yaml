@@ -8,3 +8,5 @@ import:
   version: v1.0.0
 - package: github.com/jmoiron/sqlx
 - package: github.com/lib/pq
+- package: github.com/alexcesaro/statsd.git
+  version: v2.0.0

@@ -1,6 +1,8 @@
-hash: 2801645a644fc8014fa93505a07451d9b9afb0cd5cb52c75988a1170f96beb47
-updated: 2018-02-13T18:21:11.709088145+05:30
+hash: 726d3085b3ad07f888d696eb1b1989336ecb29bd644fe56be2defe76fb0ff48d
+updated: 2018-02-17T16:38:17.107181431+05:30
 imports:
+- name: github.com/alexcesaro/statsd.git
+  version: 7fea3f0d2fab1ad973e641e51dba45443a311a90
 - name: github.com/fsnotify/fsnotify
   version: c2828203cd70a50dcccfb2761f8b1f8ceef9a8e9
 - name: github.com/gorilla/context
@@ -24,6 +26,8 @@ imports:
   - reflectx
 - name: github.com/lib/pq
   version: 83612a56d3dd153a94a629cd64925371c9adad78
+  subpackages:
+  - oid
 - name: github.com/magiconair/properties
   version: 49d762b9817ba1c2e9d0c69183c2b4a8b8f1d934
 - name: github.com/mitchellh/mapstructure

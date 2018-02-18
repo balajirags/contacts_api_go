@@ -5,6 +5,7 @@ import (
 	"github.com/jmoiron/sqlx"
 	"github.com/contacts_api_go/appcontext"
 	"github.com/contacts_api_go/logger"
+	statsdv2 "gopkg.in/alexcesaro/statsd.v2"
 )
 
 type ContactRepository interface {
@@ -13,7 +14,8 @@ type ContactRepository interface {
 }
 
 type contactRepository struct {
-	Db *sqlx.DB
+	Db     *sqlx.DB
+	statsd *statsdv2.Client
 }
 
 const createContacts = "insert into contacts(first_name, last_name, email, address, phone_number) values ($1,$2,$3,$4,$5)"
@@ -23,6 +25,7 @@ func (self contactRepository) Create(contact models.Contact) error {
 	tx := self.Db.MustBegin()
 	tx.MustExec(createContacts, contact.FirstName, contact.LastName, contact.Email, contact.Address, contact.PhoneNumber)
 	err := tx.Commit()
+	self.statsd.Increment("contacts.count")
 	if err != nil{
 		logger.Log.Errorf("Errors inserting into contact DB - %s", err.Error())
 	}
@@ -41,5 +44,6 @@ func (self contactRepository) Get(id int64) (*models.Contact, error) {
 func NewContactRepo() ContactRepository {
 	return &contactRepository{
 		appcontext.GetDB(),
+		appcontext.GetStatsDClient(),
 	}
 }
