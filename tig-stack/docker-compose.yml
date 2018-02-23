@@ -1,6 +1,6 @@
 grafana:
     image: matisq/grafana:latest
-    ports: 
+    ports:
         - 3000:3000
     links:
         - influxdb:influxdb
@@ -56,7 +56,7 @@ influxdb-cli:
 telegraf:
     image: telegraf:1.4.0
     volumes:
-      - ./etc/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+      - ./etc/telegraf.conf:/etc/telegraf/telegraf.conf
     links:
       - influxdb
     ports:

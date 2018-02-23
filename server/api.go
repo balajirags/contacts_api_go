@@ -70,14 +70,15 @@ func StatsDMiddlewareLogger() negroni.HandlerFunc {
 		IncrementInStatsD(key + ".calls")
 	})
 }
+
+
 func IncrementInStatsD(s string) {
 	t := appcontext.GetStatsDClient()
 	t.Increment(s)
 
 }
 func SendInStatsD(s string, timing *statsdv2.Timing) {
-	t := appcontext.GetStatsDClient().NewTiming()
-	t.Send(s)
+	timing.Send(s)
 }
 
 func TimingInStatsD() *statsdv2.Timing {
