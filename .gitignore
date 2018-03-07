@@ -27,6 +27,8 @@ logfile
 vendor/
 application.yml
 out/
+data/
+tmp/
 *.todo
 *.idea
 

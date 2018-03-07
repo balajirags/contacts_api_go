@@ -1,8 +1,10 @@
-hash: 726d3085b3ad07f888d696eb1b1989336ecb29bd644fe56be2defe76fb0ff48d
-updated: 2018-02-17T16:38:17.107181431+05:30
+hash: 47e4bb083c825ca1e2792b16ff0758ef9a324b9a0cfc842027546bc1af96331f
+updated: 2018-03-06T13:12:02.490422933+05:30
 imports:
 - name: github.com/alexcesaro/statsd.git
   version: 7fea3f0d2fab1ad973e641e51dba45443a311a90
+- name: github.com/codegangsta/negroni
+  version: 5dbbc83f748fc3ad38585842b0aedab546d0ea1e
 - name: github.com/fsnotify/fsnotify
   version: c2828203cd70a50dcccfb2761f8b1f8ceef9a8e9
 - name: github.com/gorilla/context
@@ -34,6 +36,8 @@ imports:
   version: b4575eea38cca1123ec2dc90c26529b5c5acfcff
 - name: github.com/pelletier/go-toml
   version: 0131db6d737cfbbfb678f8b7d92e55e27ce46224
+- name: github.com/pilu/fresh
+  version: 9c0092493eff2825c3abf64e087b3383dec939c3
 - name: github.com/pkg/errors
   version: 645ef00459ed84a119197bfb8d8205042c6df63d
 - name: github.com/sirupsen/logrus
@@ -52,6 +56,8 @@ imports:
   version: 25b30aa063fc18e48662b86996252eabdcf2f0c7
 - name: github.com/spf13/viper.git
   version: 25b30aa063fc18e48662b86996252eabdcf2f0c7
+- name: github.com/urfave/negroni
+  version: 5dbbc83f748fc3ad38585842b0aedab546d0ea1e
 - name: golang.org/x/crypto
   version: 13931e22f9e72ea58bb73048bc752b48c6d4d4ac
   subpackages:
@@ -66,6 +72,10 @@ imports:
   subpackages:
   - transform
   - unicode/norm
+- name: gopkg.in/alexcesaro/statsd.v2
+  version: 7fea3f0d2fab1ad973e641e51dba45443a311a90
+- name: gopkg.in/tylerb/graceful.v1
+  version: 4654dfbb6ad53cb5e27f37d99b02e16c1872fbbb
 - name: gopkg.in/yaml.v2
   version: d670f9405373e636a5a2765eea47fac0c9bc91a4
 testImports: []
