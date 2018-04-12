@@ -1,10 +1,12 @@
 package appcontext
 
 import (
+	_ "github.com/lib/pq"
+	"github.com/mattes/migrate/database"
+	"github.com/mattes/migrate/database/postgres"
 	"github.com/jmoiron/sqlx"
 	"github.com/contacts_api_go/config"
 	"github.com/contacts_api_go/logger"
-	_ "github.com/lib/pq"
 	statsdv2 "gopkg.in/alexcesaro/statsd.v2"
 	"fmt"
 )
@@ -47,4 +49,9 @@ func GetDB() *sqlx.DB {
 
 func GetStatsDClient() *statsdv2.Client {
 	return statsD
+}
+
+func GetDriver() (database.Driver, error) {
+	db := GetDB()
+	return postgres.WithInstance(db.DB, &postgres.Config{})
 }

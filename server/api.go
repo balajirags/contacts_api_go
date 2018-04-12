@@ -14,9 +14,35 @@ import (
 	"time"
 	"github.com/sirupsen/logrus"
 	"gopkg.in/tylerb/graceful.v1"
+	"os/signal"
+	"os"
+	"syscall"
 )
 
-func StartServer() {
+
+func listenServer(apiServer *graceful.Server) {
+	err := apiServer.ListenAndServe()
+	if err != http.ErrServerClosed {
+		logger.Log.Fatal(err.Error())
+	}
+
+}
+
+func waitForShutdown(apiServer *graceful.Server) {
+	sig := make(chan os.Signal, 1)
+	signal.Notify(sig,
+		syscall.SIGINT,
+		syscall.SIGTERM)
+	reason := <-sig
+	logger.Log.Info("API server shutting down ", reason)
+	<-apiServer.StopChan()
+	//apiServer.Shutdown(context.Background())
+	logger.Log.Info("API server shutdown complete")
+
+}
+
+func StartAPIServer() {
+	logger.Log.Info("Starting `Service API")
 	router := InitRouter()
 	handlerFunc := router.ServeHTTP
 	n := negroni.New(negroni.NewRecovery())
@@ -32,11 +58,10 @@ func StartServer() {
 			Handler: n,
 		},
 	}
-	err := server.ListenAndServe()
-	if err != http.ErrServerClosed {
-		logger.Log.Fatal(err.Error())
-	}
+	go listenServer(server)
+	waitForShutdown(server)
 }
+
 func httpStatLogger() negroni.Handler {
 	return negroni.HandlerFunc(func(rw http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
 		startTime := time.Now()

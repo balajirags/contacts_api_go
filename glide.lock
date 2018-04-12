@@ -1,5 +1,5 @@
-hash: 47e4bb083c825ca1e2792b16ff0758ef9a324b9a0cfc842027546bc1af96331f
-updated: 2018-03-06T13:12:02.490422933+05:30
+hash: 1fcdd9a92448d8e73afb677f5c472d5bf7785345365336b5478471d061bf35b0
+updated: 2018-04-12T13:13:00.871728191+05:30
 imports:
 - name: github.com/alexcesaro/statsd.git
   version: 7fea3f0d2fab1ad973e641e51dba45443a311a90
@@ -32,6 +32,13 @@ imports:
   - oid
 - name: github.com/magiconair/properties
   version: 49d762b9817ba1c2e9d0c69183c2b4a8b8f1d934
+- name: github.com/mattes/migrate
+  version: 035c07716cd373d88456ec4d701402df52584cb4
+  subpackages:
+  - database
+  - database/postgres
+  - source
+  - source/file
 - name: github.com/mitchellh/mapstructure
   version: b4575eea38cca1123ec2dc90c26529b5c5acfcff
 - name: github.com/pelletier/go-toml
@@ -56,6 +63,8 @@ imports:
   version: 25b30aa063fc18e48662b86996252eabdcf2f0c7
 - name: github.com/spf13/viper.git
   version: 25b30aa063fc18e48662b86996252eabdcf2f0c7
+- name: github.com/urfave/cli
+  version: cfb38830724cc34fedffe9a2a29fb54fa9169cd1
 - name: github.com/urfave/negroni
   version: 5dbbc83f748fc3ad38585842b0aedab546d0ea1e
 - name: golang.org/x/crypto

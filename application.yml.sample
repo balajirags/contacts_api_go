@@ -10,4 +10,5 @@ STATSD_APP_NAME: "contacts_api"
 STATSD_PORT: "8125"
 STATSD_ENABLED: "true"
 STATSD_HOST: "192.168.99.100"
+MIGRATION_FILE_PATH: "/Users/balaji/Documents/Projects/go-jek/golang/src/github.com/contacts_api_go/migrations"
 
