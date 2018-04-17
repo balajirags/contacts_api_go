@@ -1,5 +1,5 @@
-hash: 1fcdd9a92448d8e73afb677f5c472d5bf7785345365336b5478471d061bf35b0
-updated: 2018-04-12T13:13:00.871728191+05:30
+hash: dffe8897bc0356ff2f47d2a804e89ca89826e593bfabb4a68089806d63bbfb86
+updated: 2018-04-12T16:38:40.761228548+05:30
 imports:
 - name: github.com/alexcesaro/statsd.git
   version: 7fea3f0d2fab1ad973e641e51dba45443a311a90
@@ -45,8 +45,6 @@ imports:
   version: 0131db6d737cfbbfb678f8b7d92e55e27ce46224
 - name: github.com/pilu/fresh
   version: 9c0092493eff2825c3abf64e087b3383dec939c3
-- name: github.com/pkg/errors
-  version: 645ef00459ed84a119197bfb8d8205042c6df63d
 - name: github.com/sirupsen/logrus
   version: d682213848ed68c0a260ca37d6dd5ace8423f5ba
 - name: github.com/spf13/afero

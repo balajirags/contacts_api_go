@@ -1,6 +1,8 @@
 package config
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type databaseConfig struct {
 	host        string
@@ -27,7 +29,7 @@ func (dc *databaseConfig) DatabaseMaxPoolSize() int {
 }
 
 func (dc *databaseConfig) ConnectionString() string {
-	return fmt.Sprintf("dbname=%s user=%s password='%s' host=%s sslmode=disable", dc.name, dc.username, dc.password, dc.host)
+	return fmt.Sprintf("dbname=%s user=%s password='%s' host=%s port=%d sslmode=disable", dc.name, dc.username, dc.password, dc.host, dc.port)
 }
 
 func (dc *databaseConfig) DbName() string {

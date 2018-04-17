@@ -28,6 +28,10 @@ func main() {
 			Name:        "start",
 			Description: "Start HTTP api server",
 			Action: func(c *cli.Context) error {
+				err := console.RunDatabaseMigrations()
+				if err != nil && err.Error() != "no change" {
+					return err
+				}
 				server.StartAPIServer()
 				return nil
 			},
@@ -36,7 +40,12 @@ func main() {
 			Name:        "migrate:run",
 			Description: "Running Migration",
 			Action: func(c *cli.Context) error {
-				console.RunDatabaseMigrations()
+				err := console.RunDatabaseMigrations()
+				if err != nil && err.Error() == "no change" {
+					return nil
+				} else {
+					return err
+				}
 				return nil
 			},
 		},

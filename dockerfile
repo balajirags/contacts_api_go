@@ -1,10 +1,19 @@
-FROM golang:1.8
-RUN mkdir -p /go/src/github.com/contacts_api_go/
-WORKDIR /go/src/github.com/contacts_api_go/
-COPY . /go/src/github.com/contacts_api_go/
+FROM golang:latest as builder
+RUN mkdir -p $GOPATH/src/github.com/contacts_api_go/
+COPY . $GOPATH/src/github.com/contacts_api_go/
+WORKDIR $GOPATH/src/github.com/contacts_api_go/
 RUN go get -u github.com/Masterminds/glide
 RUN glide install
-EXPOSE 5000
-RUN go get github.com/pilu/fresh
+RUN mkdir -p $GOPATH/src/github.com/contacts_api_go/out/migrations
+COPY ./migrations $GOPATH/src/github.com/contacts_api_go/out/migrations
+COPY ./application.yml $GOPATH/src/github.com/contacts_api_go/out/
+RUN	go build -o $GOPATH/src/github.com/contacts_api_go/out/contacts
 
-CMD fresh -c contacts_runner.conf
+ENV DOCKERIZE_VERSION v0.6.1
+RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+    && tar -C /usr/local/bin -xzvf dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+    && rm dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+
+EXPOSE 5000
+
+CMD ["dockerize", "-wait", "tcp://db:5432","-timeout", "120s", "/go/src/github.com/contacts_api_go/out/contacts", "start"]

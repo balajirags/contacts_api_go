@@ -8,7 +8,6 @@ import (
 	"github.com/contacts_api_go/config"
 	"github.com/contacts_api_go/logger"
 	statsdv2 "gopkg.in/alexcesaro/statsd.v2"
-	"fmt"
 )
 
 var db *sqlx.DB
@@ -35,7 +34,6 @@ func initDB() *sqlx.DB {
 }
 
 func initializeStatsdClient() *statsdv2.Client {
-	fmt.Println(config.GetStatsDAdderss())
 	client, err := statsdv2.New(statsdv2.Address(config.GetStatsDAdderss()), statsdv2.Prefix(config.GetStatsDAppName()))
 	if err != nil {
 		panic(err)
